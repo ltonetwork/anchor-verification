@@ -20,8 +20,8 @@ export class VerificationScreenComponent implements OnInit {
   anchorData: any = null;
   anchoring = false;
 
-  // private _host = '';
-  private _host = 'http://anchor-demo.lto.network';
+  private _host = '';
+  // private _host = 'http://anchor-demo.lto.network';
   private _subscriptions = new Subscription();
 
   constructor(private _http: HttpClient, private _snackbar: MatSnackBar) {}
