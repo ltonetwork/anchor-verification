@@ -2,6 +2,7 @@
   *ngIf="hash; else inputScreenTpl"
   (resetHash)="resetHash()"
   [hash]="hash"
+  [host]="host"
 ></lto-verification-screen>
 
 <ng-template #inputScreenTpl>

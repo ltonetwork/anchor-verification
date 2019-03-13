@@ -2,7 +2,7 @@ import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { MatSnackBar } from '@angular/material';
 import { Subscription, of } from 'rxjs';
-import { finalize, catchError, delay, tap } from 'rxjs/operators';
+import { catchError, delay, tap } from 'rxjs/operators';
 
 @Component({
   selector: 'lto-verification-screen',
@@ -13,6 +13,8 @@ export class VerificationScreenComponent implements OnInit {
   @Input()
   hash!: string;
 
+  @Input() host!: string;
+
   @Output()
   resetHash = new EventEmitter();
 
@@ -20,7 +22,6 @@ export class VerificationScreenComponent implements OnInit {
   anchorData: any = null;
   anchoring = false;
 
-  private _host = '';
   // private _host = 'http://anchor-demo.lto.network';
   private _subscriptions = new Subscription();
 
@@ -38,7 +39,7 @@ export class VerificationScreenComponent implements OnInit {
     this.anchoring = true;
     this._subscriptions.add(
       this._http
-        .post(`${this._host}/hash`, { hash: this.hash })
+        .post(`${this.host}/hash`, { hash: this.hash })
         .pipe(
           tap(() => {
             this._snackbar.open('Anchor creting. It can take up tp 30sec.', 'Dismiss');
@@ -62,7 +63,7 @@ export class VerificationScreenComponent implements OnInit {
     this.verificating = true;
     this._subscriptions.add(
       this._http
-        .get<any>(`${this._host}/hash/${this.hash}`)
+        .get<any>(`${this.host}/hash/${this.hash}`)
         .pipe(catchError(err => of(null)))
         .subscribe(anchorData => {
           this.anchorData = anchorData;

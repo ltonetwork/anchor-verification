@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 type Step = 'input' | 'verification';
 @Component({
@@ -7,6 +7,8 @@ type Step = 'input' | 'verification';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
+  @Input() host = '';
+
   title = 'lto-anchor-verification';
   step: Step = 'input';
 
