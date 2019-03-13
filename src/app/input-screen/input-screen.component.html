@@ -1,0 +1,31 @@
+<mat-card fxFlexFill fxLayout="column">
+  <mat-card-content fxFlex="1 1 auto">
+    <div class="input-container" fxLayout="column">
+      <ng-container [ngSwitch]="inputType">
+        <mat-form-field appearance="outline" *ngSwitchCase="'Text'">
+          <textarea matInput [(ngModel)]="textInput"></textarea>
+        </mat-form-field>
+        <lto-file-input *ngSwitchCase="'File'" (fileData)="fileSelected($event)"></lto-file-input>
+      </ng-container>
+    </div>
+    <div class="encription" fxLayout="column" fxLayoutGap="8px">
+      <mat-checkbox [(ngModel)]="useEncription">Use encryption</mat-checkbox>
+      <mat-form-field *ngIf="useEncription" [appearance]="'outline'">
+        <mat-label>Password</mat-label>
+        <input type="text" [(ngModel)]="password" matInput placeholder="Password" />
+      </mat-form-field>
+    </div>
+  </mat-card-content>
+  <mat-card-actions fxLayout="row" fxLayoutAlign="space-between">
+    <button mat-button color="primary" [matMenuTriggerFor]="appMenu">
+      {{ inputType }} <mat-icon>arrow_drop_down</mat-icon>
+    </button>
+    <button mat-flat-button color="primary" [disabled]="cantVerify" (click)="verifyClickHandler()">
+      Verify
+    </button>
+  </mat-card-actions>
+</mat-card>
+<mat-menu #appMenu="matMenu">
+  <button mat-menu-item (click)="setInputType('Text')">Text</button>
+  <button mat-menu-item (click)="setInputType('File')">File</button>
+</mat-menu>
