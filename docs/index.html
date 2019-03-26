@@ -1,18 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <title>LtoAnchorVerification</title>
 
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="icon" type="image/x-icon" href="favicon.ico" />
-    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
-    <link rel="stylesheet" href="lto-anchor-verification/lto-anchor-verification.css" />
-    <script src="lto-anchor-verification/lto-anchor-verification.js"></script>
-  </head>
+<head>
+  <meta charset="utf-8" />
+  <title>LtoAnchorVerification</title>
 
-  <body>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="icon" type="image/x-icon" href="favicon.ico" />
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+  <link rel="stylesheet" href="lto-anchor-verification/lto-anchor-verification.css" />
+  <script src="lto-anchor-verification/lto-anchor-verification.js"></script>
+  <link rel="stylesheet" href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css">
+  <script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
+  <style>
+    html,
+    body {
+      background: whitesmoke;
+    }
+
+    .mdc-top-app-bar {
+      position: static;
+    }
+
+    .anchoring-demo {
+      display: flex;
+      justify-content: center;
+      margin-top: 32px;
+    }
+
+  </style>
+</head>
+
+<body>
+  <header class="mdc-top-app-bar mdc-top-app-bar--dense">
+    <div class="mdc-top-app-bar__row">
+      <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
+        <span class="mdc-top-app-bar__title">LTO Anchoring demo</span>
+      </section>
+    </div>
+  </header>
+  <div class="anchoring-demo">
     <lto-anchor-verification host="http://anchor-demo.lto.network"></lto-anchor-verification>
-  </body>
+  </div>
+</body>
+
 </html>
