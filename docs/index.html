@@ -10,6 +10,11 @@
   <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
   <link rel="stylesheet" href="lto-anchor-verification/lto-anchor-verification.css" />
+  <link rel="stylesheet"
+    href="https://s3-eu-west-1.amazonaws.com/legalthings/assets/icons/LivIconsEvo/css/LivIconsEvo.css">
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+    integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+
   <script src="lto-anchor-verification/lto-anchor-verification.js"></script>
   <link rel="stylesheet" href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css">
   <script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
@@ -18,6 +23,7 @@
     body {
       background: whitesmoke;
       margin: 0;
+      font-family: Graphik, sans-serif;
     }
 
     .mdc-top-app-bar {
@@ -30,20 +36,290 @@
       margin-top: 32px;
     }
 
+    .sticky-header {
+      height: 60px;
+      width: 100%;
+      background: linear-gradient(90deg, #77a2f8 0, #9867d0 90%) !important;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      z-index: 1000;
+      box-shadow: 0 5px 5px rgba(0, 0, 0, 0.07);
+      padding: 16px;
+      box-sizing: border-box;
+    }
+
+    .sticky-header .lto-logo {
+      margin-top: 7px;
+    }
+
+    .sticky-header .lto-stats-container {
+      flex: 1 1 auto;
+      display: flex;
+      justify-content: space-between;
+      max-width: 700px;
+    }
+
+    .sticky-header .lto-stats-inner {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: flex-end;
+    }
+
+    .sticky-header .lto-stats {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .sticky-header .image {
+      width: 26px;
+      height: 26px;
+      margin-right: 4px;
+    }
+
+    .sticky-header .title {
+      font-size: 11px;
+      color: white;
+      margin: 0px;
+      text-align: right;
+      line-height: 1.5;
+    }
+
+    .sticky-header .val {
+      font-size: 17px;
+      font-weight: bold;
+      text-align: right;
+      color: #fff;
+    }
+
+    .sticky-header .nav-button-container {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      width: 250px;
+    }
+
+    .sticky-header .nav-button-container .nav-button {
+      border: 2px solid #fff;
+      height: 40px;
+      padding: 11px;
+      line-height: 1;
+      color: white;
+      font-weight: 600;
+      box-sizing: border-box;
+      text-decoration: none !important;
+      font-weight: 100;
+    }
+
+    .sticky-header .nav-button-container .nav-button.active {
+      border-color: transparent;
+      background: #5bddb4;
+    }
+
+    .sticky-header .loader {
+      width: 32px;
+      height: 32px;
+    }
+
+
+    .loader {
+      width: 120px;
+      height: 120px;
+      transform: rotate(-90deg);
+      stroke-linecap: round;
+      stroke-width: 4;
+      fill: none;
+
+      .internal-circle,
+      .external-circle {
+        stroke: #fff;
+        stroke-dashoffset: 0;
+        transform-origin: center;
+      }
+
+      .internal-circle {
+        stroke-dasharray: 187;
+        animation: internal 1s ease-in-out infinite;
+        opacity: .4;
+      }
+
+      .external-circle {
+        stroke-dasharray: 312;
+        animation: external 1s linear infinite;
+        opacity: .9;
+      }
+    }
+
   </style>
 </head>
 
 <body>
-  <header class="mdc-top-app-bar mdc-top-app-bar--dense">
-    <div class="mdc-top-app-bar__row">
-      <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
-        <span class="mdc-top-app-bar__title">LTO Anchoring demo</span>
-      </section>
+  <div class="sticky-header">
+    <div class="lto-logo">
+      <svg width="154px" height="18px">
+        <title>LTO Network</title>
+        <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+          <path
+            d="M11.3416668,17 L0.716666776,17 L0.716666776,0.325 L4.29166678,0.325 L4.29166678,13.875 L11.3416668,13.875 L11.3416668,17 Z M19.5000001,17 L15.9250001,17 L15.9250001,3.45 L11.0500001,3.45 L11.0500001,0.325 L24.3500001,0.325 L24.3500001,3.45 L19.5000001,3.45 L19.5000001,17 Z M34.7833334,17.3 C29.7333334,17.3 26.0583334,13.7 26.0583334,8.675 C26.0583334,3.65 29.7333334,0.05 34.7833334,0.05 C39.8083334,0.05 43.4833334,3.65 43.4833334,8.675 C43.4833334,13.7 39.8083334,17.3 34.7833334,17.3 Z M34.7833334,14.15 C37.8583334,14.15 39.8333334,11.775 39.8333334,8.675 C39.8333334,5.55 37.8583334,3.2 34.7833334,3.2 C31.6833334,3.2 29.7083334,5.55 29.7083334,8.675 C29.7083334,11.775 31.6833334,14.15 34.7833334,14.15 Z M69,17 L65.575,17 L57.625,6.125 L57.625,17 L54.075,17 L54.075,0.325 L57.725,0.325 L65.45,10.8 L65.45,0.325 L69,0.325 L69,17 Z M78.7333333,17.3 C75.0583333,17.3 72.2833333,14.825 72.2833333,10.95 C72.2833333,7.45 74.8833333,4.625 78.5333333,4.625 C82.1583333,4.625 84.5833333,7.325 84.5833333,11.25 L84.5833333,12 L75.6083333,12 C75.8333333,13.475 77.0333333,14.7 79.0833333,14.7 C80.1083333,14.7 81.5083333,14.275 82.2833333,13.525 L83.7083333,15.625 C82.5083333,16.725 80.6083333,17.3 78.7333333,17.3 Z M81.5333333,9.8 C81.4333333,8.65 80.6333333,7.225 78.5333333,7.225 C76.5583333,7.225 75.7083333,8.6 75.5833333,9.8 L81.5333333,9.8 Z M91.7666667,17.3 C89.5416667,17.3 88.3666667,16.15 88.3666667,13.975 L88.3666667,7.7 L86.3666667,7.7 L86.3666667,4.925 L88.3666667,4.925 L88.3666667,1.625 L91.5416667,1.625 L91.5416667,4.925 L93.9916667,4.925 L93.9916667,7.7 L91.5416667,7.7 L91.5416667,13.125 C91.5416667,13.9 91.9416667,14.475 92.6416667,14.475 C93.1166667,14.475 93.5666667,14.3 93.7416667,14.1 L94.4166667,16.525 C93.9416667,16.95 93.0916667,17.3 91.7666667,17.3 Z M111,17 L107.6,17 L105.05,8.775 L102.5,17 L99.1,17 L95.425,4.925 L98.725,4.925 L100.975,13.05 L103.625,4.925 L106.45,4.925 L109.1,13.05 L111.35,4.925 L114.675,4.925 L111,17 Z M122.683333,17.3 C118.708333,17.3 116.308333,14.375 116.308333,10.95 C116.308333,7.525 118.708333,4.625 122.683333,4.625 C126.683333,4.625 129.083333,7.525 129.083333,10.95 C129.083333,14.375 126.683333,17.3 122.683333,17.3 Z M122.683333,14.475 C124.683333,14.475 125.783333,12.85 125.783333,10.95 C125.783333,9.075 124.683333,7.45 122.683333,7.45 C120.708333,7.45 119.608333,9.075 119.608333,10.95 C119.608333,12.85 120.708333,14.475 122.683333,14.475 Z M135.466667,17 L132.291667,17 L132.291667,4.925 L135.466667,4.925 L135.466667,6.55 C136.341667,5.5 137.816667,4.625 139.316667,4.625 L139.316667,7.725 C139.091667,7.675 138.816667,7.65 138.441667,7.65 C137.391667,7.65 135.991667,8.25 135.466667,9.025 L135.466667,17 Z M153.925,17 L149.95,17 L146.75,12.35 L145.3,13.9 L145.3,17 L142.125,17 L142.125,0.325 L145.3,0.325 L145.3,10.3 L149.875,4.925 L153.775,4.925 L149,10.4 L153.925,17 Z"
+            id="LTONetwork" fill="#FFFFFF" fill-rule="nonzero"></path>
+        </g>
+      </svg>
     </div>
-  </header>
+    <div class="lto-stats-container is-hidden-mobile">
+      <div class="lto-stats network">
+        <span class="title">Network</span>
+        <div class="lto-stats-inner">
+          <span class="image">
+            <div class="livicon-evo"
+              data-options="name: globe.svg; size: 27px; style: lines; strokeWidth: 1; strokeColor: #fff; strokeColorAction: #b3421b; strokeColorAlt: #ffc963; strokeColorAltAction: #ab69c6; fillColor: #91e9ff; fillColorAction: #ff926b; solidColor: #6C7A89; solidColorAction: #4C5A69; solidColorBgAction: #ffffff; solidColorBg: #ffffff; tryToSharpen: true">
+            </div>
+          </span>
+          <span class="val">
+            Mainnet
+          </span>
+        </div>
+      </div>
+      <div class="lto-stats transactions-today">
+        <span class="title">Transactions</span>
+        <div class="lto-stats-inner">
+          <span class="image">
+            <div class="livicon-evo"
+              data-options="name: clock.svg; size: 27px; style: lines; strokeWidth: 1; strokeColor: #fff; strokeColorAction: #b3421b; strokeColorAlt: #ffc963; strokeColorAltAction: #ab69c6; fillColor: #91e9ff; fillColorAction: #ff926b; solidColor: #6C7A89; solidColorAction: #4C5A69; solidColorBgAction: #ffffff; solidColorBg: #ffffff; tryToSharpen: true">
+            </div>
+          </span>
+          <span class="val">
+            <svg class="loader" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+              <circle class="internal-circle" cx="60" cy="60" r="30"></circle>
+              <circle class="external-circle" cx="60" cy="60" r="50"></circle>
+            </svg>
+          </span>
+        </div>
+      </div>
+      <div class="lto-stats transactions-monthly">
+        <span class="title">Transactions</span>
+        <div class="lto-stats-inner">
+          <span class="image">
+            <div class="livicon-evo"
+              data-options="name: calendar.svg; size: 27px; style: lines; strokeWidth: 1; strokeColor: #fff; strokeColorAction: #b3421b; strokeColorAlt: #ffc963; strokeColorAltAction: #ab69c6; fillColor: #91e9ff; fillColorAction: #ff926b; solidColor: #6C7A89; solidColorAction: #4C5A69; solidColorBgAction: #ffffff; solidColorBg: #ffffff; tryToSharpen: true">
+            </div>
+          </span>
+          <span class="val">
+            <svg class="loader" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+              <circle class="internal-circle" cx="60" cy="60" r="30"></circle>
+              <circle class="external-circle" cx="60" cy="60" r="50"></circle>
+            </svg>
+          </span>
+        </div>
+      </div>
+      <div class="lto-stats nodes">
+        <span class="title">Nodes</span>
+        <div class="lto-stats-inner">
+          <span class="image">
+            <div class="livicon-evo"
+              data-options="name: servers.svg; size: 27px; style: lines; strokeWidth: 1; strokeColor: #fff; strokeColorAction: #b3421b; strokeColorAlt: #ffc963; strokeColorAltAction: #ab69c6; fillColor: #91e9ff; fillColorAction: #ff926b; solidColor: #6C7A89; solidColorAction: #4C5A69; solidColorBgAction: #ffffff; solidColorBg: #ffffff; tryToSharpen: true">
+            </div>
+          </span>
+          <span class="val">
+            <svg class="loader" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+              <circle class="internal-circle" cx="60" cy="60" r="30"></circle>
+              <circle class="external-circle" cx="60" cy="60" r="50"></circle>
+            </svg>
+          </span>
+        </div>
+      </div>
+    </div>
+    <div class="nav-button-container">
+      <a class="nav-button active is-hidden-mobile" href="https://explorer.lto.network">
+        Explorer
+      </a>
+      <a class="nav-button" href="https://dev.lto.network">
+        Developer Area
+      </a>
+    </div>
+  </div>
   <div class="anchoring-demo">
     <lto-anchor-verification host="https://anchor-demo.lto.network"></lto-anchor-verification>
   </div>
+
+  <script src="https://s3-eu-west-1.amazonaws.com/legalthings/assets/icons/LivIconsEvo/js/tools/snap.svg-min.js">
+  </script>
+  <script src="https://s3-eu-west-1.amazonaws.com/legalthings/assets/icons/LivIconsEvo/js/tools/TweenMax.min.js">
+  </script>
+  <script src="https://s3-eu-west-1.amazonaws.com/legalthings/assets/icons/LivIconsEvo/js/tools/DrawSVGPlugin.min.js">
+  </script>
+  <script src="https://s3-eu-west-1.amazonaws.com/legalthings/assets/icons/LivIconsEvo/js/tools/MorphSVGPlugin.min.js">
+  </script>
+  <script src="https://s3-eu-west-1.amazonaws.com/legalthings/assets/icons/LivIconsEvo/js/tools/verge.min.js"></script>
+  <script src="https://s3-eu-west-1.amazonaws.com/legalthings/assets/icons/LivIconsEvo/js/LivIconsEvo.defaults.js">
+  </script>
+  <script src="https://s3-eu-west-1.amazonaws.com/legalthings/assets/icons/LivIconsEvo/js/LivIconsEvo.min.js"></script>
+  <script src="https://cdn.rawgit.com/JDMcKinstry/JavaScriptDateFormat/master/Date.format.min.js"></script>
+  <script>
+    const peersApi = 'https://nodes.lto.network/peers/all';
+    const transactionsApi = 'https://stats.lto.network/transactions';
+
+    $(document).ready(function () {
+
+      function getTransactionsData() {
+        const transactionsToday = $('.lto-stats.transactions-today');
+        const transactionsMonthly = $('.lto-stats.transactions-monthly');
+
+        const today = new Date();
+        const firstDayMonth = new Date(today.getFullYear(), today.getMonth(), 1);
+        const lastDayMonth = new Date(today.getFullYear(), today.getMonth() + 1, 0);
+
+        $.ajax({
+          url: transactionsApi,
+          data: {
+            startdate: today.format('m-d-Y'),
+            enddate: today.format('m-d-Y'),
+            granularity: 'day'
+          },
+          success: (response => {
+            transactionsToday.find('.val').html(response.shift().transactions);
+          }),
+          dataType: 'json'
+        });
+
+        $.ajax({
+          url: transactionsApi,
+          data: {
+            startdate: firstDayMonth.format('m-d-Y'),
+            enddate: lastDayMonth.format('m-d-Y'),
+            granularity: 'day'
+          },
+          success: (response => {
+            const totalTransactions = response.reduce((total, val) => total + parseInt(val.transactions,
+              10), 0);
+            transactionsMonthly.find('.val').html(totalTransactions);
+          }),
+          dataType: 'json'
+        });
+      }
+
+      function getPeers() {
+        const nodeElem = $('.lto-stats.nodes');
+
+        $.ajax({
+          url: peersApi,
+          success: (response => {
+            const nodes = response.peers;
+            console.log(nodes);
+            nodeElem.find('.val').html(nodes.length);
+          }),
+          error: (() => {
+            nodeElem.find('.val').html(0);
+          }),
+          dataType: 'json'
+        });
+      }
+
+      getTransactionsData();
+      getPeers();
+    });
+
+  </script>
 </body>
 
 </html>
