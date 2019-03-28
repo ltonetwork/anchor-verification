@@ -1,10 +1,6 @@
-<lto-verification-screen
-  *ngIf="hash; else inputScreenTpl"
-  (resetHash)="resetHash()"
-  [hash]="hash"
-  [host]="host"
-></lto-verification-screen>
+<lto-verification-screen *ngIf="hash; else inputScreenTpl" (resetHash)="resetHash()" [hash]="hash" [host]="host">
+</lto-verification-screen>
 
 <ng-template #inputScreenTpl>
-  <lto-input-screen (verify)="verify($event)"></lto-input-screen>
+  <lto-input-screen [inputType]="defaultInputType" (verify)="verify($event)"></lto-input-screen>
 </ng-template>

@@ -8,6 +8,7 @@ type Step = 'input' | 'verification';
 })
 export class AppComponent {
   @Input() host = '';
+  @Input('default-input-type') defaultInputType = 'Text';
 
   title = 'lto-anchor-verification';
   step: Step = 'input';

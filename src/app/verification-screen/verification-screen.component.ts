@@ -42,7 +42,9 @@ export class VerificationScreenComponent implements OnInit {
         .post(`${this.host}/hash`, { hash: this.hash })
         .pipe(
           tap(() => {
-            this._snackbar.open('Anchor creting. It can take up tp 30sec.', 'Dismiss');
+            this._snackbar.open('Anchor creating. It can take up to 30sec.', 'Dismiss', {
+              duration: 5000
+            });
           }),
           delay(3000)
         )

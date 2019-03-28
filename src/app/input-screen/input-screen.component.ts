@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { HmacSHA256 } from 'crypto-js';
 import { sha256 } from 'js-sha256';
 
@@ -8,7 +8,9 @@ import { sha256 } from 'js-sha256';
   styleUrls: ['./input-screen.component.scss']
 })
 export class InputScreenComponent implements OnInit {
+  @Input()
   inputType = 'Text';
+
   useEncription = false;
   textInput = '';
   password = '';

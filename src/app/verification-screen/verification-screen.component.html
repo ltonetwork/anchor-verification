@@ -1,7 +1,5 @@
 <mat-card fxFlexFill fxLayout="column">
-  <ng-container
-    *ngIf="verificating || anchoring; then loadingTpl; else anchorDataTpl"
-  ></ng-container>
+  <ng-container *ngIf="verificating || anchoring; then loadingTpl; else anchorDataTpl"></ng-container>
 </mat-card>
 
 <ng-template #loadingTpl>
@@ -18,9 +16,8 @@
   </mat-card-content>
   <mat-card-actions fxLayout="row" fxLayoutAlign="space-between">
     <button mat-button (click)="backClickHandler()">Back</button>
-    <a mat-button *ngIf="anchorData" [href]="buildExplorerUrl()" target="_balnk" color="primary"
-      >Check in explorer <mat-icon>chevron_right</mat-icon></a
-    >
+    <a mat-button *ngIf="anchorData" [href]="buildExplorerUrl()" target="_balnk" color="primary">Check in explorer
+      <mat-icon>chevron_right</mat-icon></a>
     <button mat-button color="primary" *ngIf="!anchorData" (click)="createAnchor()">
       Create an anchor
     </button>
@@ -28,6 +25,7 @@
 </ng-template>
 
 <ng-template #notVerifiedTpl>
-  Hash <b>561b3435bd915fb8c2e71180569946c11f3546bc19ebc2c53f36908c23dec6ff</b><br />
+  Hash
+  <div class="hash"><b>561b3435bd915fb8c2e71180569946c11f3546bc19ebc2c53f36908c23dec6ff</b></div>
   does not exists in the blockchain
 </ng-template>
