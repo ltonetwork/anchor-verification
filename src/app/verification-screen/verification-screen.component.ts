@@ -15,6 +15,8 @@ export class VerificationScreenComponent implements OnInit {
 
   @Input() host!: string;
 
+  @Input() explorerHost = '';
+
   @Output()
   resetHash = new EventEmitter();
 
@@ -58,7 +60,8 @@ export class VerificationScreenComponent implements OnInit {
   buildExplorerUrl() {
     const transaction = this.anchorData.chainpoint.anchors[0].sourceId;
     const hash = this.hash;
-    return `https://testnet-explorer.lto.network/transaction/${transaction}?hash=${hash}`;
+    // return `https://testnet-explorer.lto.network/transaction/${transaction}?hash=${hash}`;
+    return `${this.explorerHost}/transaction/${transaction}?hash=${hash}`;
   }
 
   private _verify() {
