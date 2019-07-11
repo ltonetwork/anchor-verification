@@ -1,5 +1,5 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
-import { HmacSHA256 } from 'crypto-js';
+import * as CryptoJS from 'crypto-js';
 import { sha256 } from 'js-sha256';
 
 @Component({
@@ -44,14 +44,21 @@ export class InputScreenComponent implements OnInit {
   private _getHash() {
     const data = this.inputType === 'Text' ? this.textInput : this.selectedFileData;
     if (data && data !== '') {
-      const hash = sha256(data);
-      return this.useEncription ? this._encrypt(hash) : hash;
+      return this.useEncription ? this._encrypt(data) : sha256(data);
     }
 
     return '';
   }
 
-  private _encrypt(hash: string): string {
-    return HmacSHA256(hash, this.password).toString();
+  private _encrypt(hash: string | ArrayBuffer): string {
+
+    let wordArray;
+    if (typeof hash === 'string') {
+      wordArray = hash;
+    } else {
+      wordArray = CryptoJS.lib.WordArray.create(new Uint8Array(hash));
+    }
+
+    return CryptoJS.HmacSHA256(wordArray, this.password).toString();
   }
 }
