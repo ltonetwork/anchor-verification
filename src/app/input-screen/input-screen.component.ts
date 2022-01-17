@@ -9,8 +9,8 @@ import { sha256 } from 'js-sha256';
 })
 export class InputScreenComponent implements OnInit {
   @Input()
-  inputType = 'Text';
-
+  inputType = 'File';
+  
   useEncription = false;
   textInput = '';
   password = '';

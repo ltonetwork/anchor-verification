@@ -1,4 +1,6 @@
-# LtoAnchorVerification
+# LTO Network - Anchor verification
+
+[![Screenshot](https://user-images.githubusercontent.com/100821/149820690-830685f6-d462-4440-b56f-10b92af02876.png)](https://verify.lto.network)
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.5.
 
@@ -12,7 +14,9 @@ Run `ng generate component component-name` to generate a new component. You can 
 
 ## Build
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+Run `npm run build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+
+To serve the file on GitHub packages, run `npm run package`. It will update the `docs/` directory.
 
 ## Running unit tests
 

@@ -8,7 +8,7 @@ type Step = 'input' | 'verification';
 })
 export class AppComponent {
   @Input() host = '';
-  @Input('default-input-type') defaultInputType = 'Text';
+  @Input('default-input-type') defaultInputType = 'File';
   @Input('explorer-host') explorerHost = '';
 
   title = 'lto-anchor-verification';
